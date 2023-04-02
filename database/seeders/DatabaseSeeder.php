@@ -4,6 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Socio;
+use App\Models\Pista;
+use App\Models\Deporte;
+use App\Models\Reserva;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory(config('databaseConsts.users.N_USERS_SEEDER'))->create();
+        Socio::factory(config('databaseConsts.socios.N_SOCIOS_SEEDER'))->create();
+        Deporte::factory(config('databaseConsts.deporte.N_DEPORTES_SEEDER'))->create();
+        Pista::factory(config('databaseConsts.pistas.N_PISTAS_SEEDER'))->create();
+        Reserva::factory(config('databaseConsts.reservas.N_RESERVAS_SEEDER'))->create();
     }
 }

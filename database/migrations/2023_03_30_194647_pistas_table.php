@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        //
+        Schema::create('pistas', function(Blueprint $table){
             $table->id();
-            $table->text('name');
-            $table->text('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->text('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->text('codigo')->unique();
+            $table->float('ancho');
+            $table->float('largo');
+            $table->foreignId('deporte_id');
+
+            $table->index('codigo');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        //
     }
 };

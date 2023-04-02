@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        //
+        Schema::create('reservas', function(Blueprint $table){
             $table->id();
-            $table->text('name');
-            $table->text('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->text('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->foreignId('socio_id');
+            $table->foreignId('pista_id');
+            $table->dateTime('dia');
+            $table->integer('hora');
+
+            $table->index('dia');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        //
     }
 };
