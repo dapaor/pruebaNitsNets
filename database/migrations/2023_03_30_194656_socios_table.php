@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
         Schema::create('socios', function(Blueprint $table){
-           $table->id('socio_id');
+           $table->id();
            $table->text('nombre');
            $table->text('apellidos');
            $table->text('dni')->unique();

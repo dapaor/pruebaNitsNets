@@ -12,14 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('reservas', function(Blueprint $table){
-            $table->id();
-            $table->foreignId('socio_id');
-            $table->foreignId('pista_id');
-            $table->dateTime('dia');
-            $table->integer('hora');
-
-            $table->index('dia');
+        Schema::table('reservas', function(Blueprint $table){
+           $table->timestamps();
         });
     }
 

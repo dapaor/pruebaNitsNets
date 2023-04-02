@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
         Schema::create('pistas', function(Blueprint $table){
-            $table->id('pista_id');
+            $table->id();
             $table->text('codigo')->unique();
             $table->float('ancho');
             $table->float('largo');
