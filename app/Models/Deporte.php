@@ -10,4 +10,9 @@ class Deporte extends Model
     use HasFactory;
 
     protected $table = 'deportes';
+
+    public function pistas()
+    {
+        return $this->hasMany(Pista::class);
+    }
 }

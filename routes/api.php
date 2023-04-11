@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PistaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeporteController;
@@ -19,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/deporte', DeporteController::class);
+
+Route::resource('/pista', PistaController::class);

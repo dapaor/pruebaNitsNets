@@ -24,14 +24,16 @@ class DeporteController extends Controller
     public function store(StoreDeporteRequest $request)
     {
         $deporte = new Deporte();
-        $deporte->name = $request['name'];
+        $deporte->name = $request['deporte.name'];
+        $deporte->codigo = $request['deporte.codigo'];
+
         return DeporteService::store($deporte);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Deporte $deporte)
+    public function show($deporte)
     {
         return DeporteService::show($deporte);
     }

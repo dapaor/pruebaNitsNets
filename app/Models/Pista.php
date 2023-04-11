@@ -9,4 +9,9 @@ class Pista extends Model
 {
     use HasFactory;
     protected $table = 'pistas';
+
+    public function deporte()
+    {
+        return $this->belongsTo(Deporte::class);
+    }
 }

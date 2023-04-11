@@ -24,22 +24,29 @@ class StoreDeporteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:50|unique:deportes,name'
+            'deporte.name' => 'required|max:50|unique:deportes,name',
+            'deporte.codigo' => 'required|max:4|unique:deportes,codigo'
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' => 'el :attribute es obligatorio',
-            'name.unique' => 'el :attribute ya existe en la base de datos'
+            'deporte.name.required' => 'el :attribute es obligatorio',
+            'deporte.name.unique' => 'el :attribute ya existe en la base de datos',
+            'deporte.name.max' => 'el :attribute debe contener 50 caracteres como máximo',
+
+            'deporte.codigo.required' => 'el :attribute es obligatorio',
+            'deporte.codigo.unique' => 'el :attribute ya existe en la base de datos',
+            'deporte.codigo.max' => 'el :attribute debe tener 4 caracteres como máximo'
         ];
     }
 
     public function attributes(): array
     {
         return [
-            'name' => 'nombre del deporte'
+            'deporte.name' => 'nombre del deporte',
+            'deporte.codigo' => 'código del deporte'
         ];
     }
 

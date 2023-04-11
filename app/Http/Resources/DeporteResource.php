@@ -16,7 +16,8 @@ class DeporteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name
+            'name' => $this->name,
+            'codigo' => $this->codigo
         ];
     }
 }

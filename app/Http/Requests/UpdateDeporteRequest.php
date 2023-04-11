@@ -28,7 +28,13 @@ class UpdateDeporteRequest extends FormRequest
         return [
             'deporte.name' => [
                 'required',
-                Rule::unique('deportes', 'name')
+                Rule::unique('deportes', 'name'),
+                'max:50'
+            ],
+            'deporte.codigo' => [
+                'required',
+                Rule::unique('deportes', 'codigo'),
+                'max:4'
             ],
         ];
     }
@@ -37,7 +43,12 @@ class UpdateDeporteRequest extends FormRequest
     {
         return [
             'deporte.name.required' => 'el :attribute es obligatorio',
-            'deporte.name.unique' => 'el :attribute ya existe en la base de datos'
+            'deporte.name.unique' => 'el :attribute ya existe en la base de datos',
+            'deporte.name.max' => 'el :attribute debe contener 50 caracteres como máximo',
+
+            'deporte.codigo.required' => 'el :attribute es obligatorio',
+            'deporte.codigo.unique' => 'el :attribute ya existe en la base de datos',
+            'deporte.codigo.max' => 'el :attribute debe tener 4 caracteres como máximo'
         ];
     }
 
@@ -45,6 +56,7 @@ class UpdateDeporteRequest extends FormRequest
     {
         return [
             'deporte.name' => 'nombre del deporte',
+            'deporte.codigo' => 'código del deporte'
         ];
     }
 
