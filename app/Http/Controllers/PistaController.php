@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DeletePistaRequest;
-use App\Http\Requests\StorePistaRequest;
-use App\Http\Requests\UpdatePistaRequest;
-use App\Http\Services\DeporteService;
+use App\Http\Requests\Pista\DeletePistaRequest;
+use App\Http\Requests\Pista\StorePistaRequest;
+use App\Http\Requests\Pista\UpdatePistaRequest;
 use App\Http\Services\PistaService;
 use App\Models\Pista;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PistaController extends Controller
 {
