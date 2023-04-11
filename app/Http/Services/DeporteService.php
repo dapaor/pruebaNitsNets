@@ -2,10 +2,9 @@
 
 namespace App\Http\Services;
 
-use App\Http\Requests\StoreDeporteRequest;
 use App\Http\Resources\DeporteResource;
 use App\Models\Deporte;
-use \Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class DeporteService
 {

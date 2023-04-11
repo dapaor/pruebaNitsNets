@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DeleteDeporteRequest;
-use App\Http\Requests\StoreDeporteRequest;
-use App\Http\Requests\UpdateDeporteRequest;
+use App\Http\Requests\Deporte\DeleteDeporteRequest;
+use App\Http\Requests\Deporte\StoreDeporteRequest;
+use App\Http\Requests\Deporte\UpdateDeporteRequest;
 use App\Http\Services\DeporteService;
 use App\Models\Deporte;
 
