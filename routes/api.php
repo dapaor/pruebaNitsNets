@@ -25,6 +25,6 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::resource('/deporte', DeporteController::class);
     Route::resource('/pista', PistaController::class);
     Route::resource('/socio', SocioController::class);
-    Route::resource('/rese rva', ReservaController::class);
+    Route::resource('/reserva', ReservaController::class);
     Route::get('logout', [UserController::class,'logout']);
 });

@@ -11,7 +11,20 @@ use App\Models\Pista;
 class PistaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/pista",
+     *     summary="Mostrar pistas",
+     *     tags={"Pista"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Mostrar todas las pistas."
+     *     ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
      */
     public function index()
     {
@@ -19,7 +32,51 @@ class PistaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/pista",
+     *     summary="Crear pista",
+     *     security={{"bearerAuth":{}}},
+     *     tags={"Pista"},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Pista creada de manera exitosa"
+     *     ),
+     *     @OA\RequestBody(
+     *     request="PistaStoreRequest",
+     *     description="Contiene los datos de la pista a añadir",
+     *     required=true,
+     *     @OA\JsonContent(
+     *          @OA\Schema (
+     *              @OA\Property (
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="ancho",
+     *                      type="int"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="largo",
+     *                      type="int"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="deporte",
+     *                      type="string"
+     *                  ),
+     *              ),
+     *          ),
+     *          example={
+     *                  "pista":{
+     *                          "ancho":60,
+     *                          "largo":120,
+     *                          "deporte":"balonmano"
+     *                  }
+     *              }
+     *      )
+     *      ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
      */
     public function store(StorePistaRequest $request)
     {
@@ -31,7 +88,26 @@ class PistaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/pista/{id}",
+     *     summary="Mostrar una pista",
+     *     tags={"User"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Mostrar una pista."
+     *     ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         in="path",
+     *         description="el id de la pista a mostrar",
+     *         required=true
+     *     ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
      */
     public function show($pista)
     {
@@ -39,7 +115,58 @@ class PistaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/pista/{id}",
+     *     summary="Modificar pista",
+     *     security={{"bearerAuth":{}}},
+     *     tags={"Pista"},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Pista modificada de manera exitosa"
+     *     ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         in="path",
+     *         description="el id de la pista a modificar",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *     request="PistaUpdateRequest",
+     *     description="Contiene los datos de la pista a modificar",
+     *     required=true,
+     *     @OA\JsonContent(
+     *          @OA\Schema (
+     *              @OA\Property (
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="ancho",
+     *                      type="int"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="largo",
+     *                      type="int"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="deporte",
+     *                      type="string"
+     *                  ),
+     *              ),
+     *          ),
+     *          example={
+     *                  "pista":{
+     *                          "ancho":40,
+     *                          "largo":100,
+     *                          "deporte": "baloncesto"
+     *                  }
+     *              }
+     *      )
+     *      ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     *
+     * )
      */
     public function update(UpdatePistaRequest $request, $pista)
     {
@@ -50,7 +177,47 @@ class PistaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/pista/{id}",
+     *     summary="Borrar una pista",
+     *     tags={"Pista"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Pista eliminada correctamente."
+     *     ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         in="path",
+     *         description="el id de la pista a eliminar",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *     request="PistaDeleteRequest",
+     *     description="Contiene el código de la pista a elimianr",
+     *     required=true,
+     *     @OA\JsonContent(
+     *          @OA\Schema (
+     *              @OA\Property (
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="codigo",
+     *                      type="int"
+     *                  ),
+     *              ),
+     *          ),
+     *          example={
+     *                  "pista":{
+     *                          "code":"BASK-11"
+     *                  }
+     *              }
+     *      )
+     *      ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
      */
     public function destroy(DeletePistaRequest $request)
     {

@@ -13,7 +13,20 @@ use Illuminate\Support\Carbon;
 class ReservaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/reserva",
+     *     summary="Mostrar reservas",
+     *     tags={"Reserva"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Mostrar todas las reservas."
+     *     ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
      */
     public function index()
     {
@@ -21,7 +34,56 @@ class ReservaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/reserva",
+     *     summary="Crear reserva",
+     *     security={{"bearerAuth":{}}},
+     *     tags={"Reserva"},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Reserva creada de manera exitosa"
+     *     ),
+     *     @OA\RequestBody(
+     *     request="ReservaStoreRequest",
+     *     description="Contiene los datos de la reserva a añadir",
+     *     required=true,
+     *     @OA\JsonContent(
+     *          @OA\Schema (
+     *              @OA\Property (
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="dia",
+     *                      type="date"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="socio_id",
+     *                      type="int"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="pista_id",
+     *                      type="int"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="hora",
+     *                      type="int"
+     *                  ),
+     *              ),
+     *          ),
+     *          example={
+     *                  "reserva":{
+     *                          "dia":"12/04/23",
+     *                          "socio_id":12,
+     *                          "pista_id":"15",
+     *                          "hora":8
+     *                  }
+     *              }
+     *      )
+     *      ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
      */
     public function store(StoreReservaRequest $request)
     {
@@ -35,7 +97,26 @@ class ReservaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/reserva/{id}",
+     *     summary="Mostrar una reserva",
+     *     tags={"Reserva"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Mostrar una reserva."
+     *     ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         in="path",
+     *         description="el id de la reserva a mostrar",
+     *         required=true
+     *     ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
      */
     public function show(Reserva $reserva)
     {
@@ -43,7 +124,63 @@ class ReservaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/reserva/{id}",
+     *     summary="Modificar reserva",
+     *     security={{"bearerAuth":{}}},
+     *     tags={"Reserva"},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Reserva modificada de manera exitosa"
+     *     ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         in="path",
+     *         description="el id de la reserva a modificar",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *     request="ReservaUpdateRequest",
+     *     description="Contiene los datos de la reserva a modificar",
+     *     required=true,
+     *     @OA\JsonContent(
+     *          @OA\Schema (
+     *              @OA\Property (
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="dia",
+     *                      type="date"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="socio_id",
+     *                      type="int"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="pista_id",
+     *                      type="string"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="hora",
+     *                      type="int"
+     *                  ),
+     *              ),
+     *          ),
+     *          example={
+     *                  "reserva":{
+     *                          "dia":"24/04/23",
+     *                          "socio_id":12,
+     *                          "pista_id": 15,
+     *                          "hora": 10
+     *                  }
+     *              }
+     *      )
+     *      ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     *
+     * )
      */
     public function update(UpdateReservaRequest $request, Reserva $reserva)
     {
@@ -57,7 +194,27 @@ class ReservaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/reserva/{id}",
+     *     summary="Borrar una reserva",
+     *     tags={"Reserva"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Reserva eliminada correctamente."
+     *     ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         in="path",
+     *         description="el id de la reserva a eliminar",
+     *         required=true
+     *     ),
+     *
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
      */
     public function destroy(Reserva $reserva)
     {

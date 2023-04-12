@@ -24,10 +24,11 @@ class DeporteService
         $deporte->save();
         return DeporteResource::collection(collect([$deporte]));
     }
-    public static function update($id, $name) : AnonymousResourceCollection
+    public static function update($id, $name, $codigo) : AnonymousResourceCollection
     {
         $deporte = Deporte::find($id);
         $deporte->name = $name;
+        $deporte->codigo = $codigo;
         $deporte->save();
         return DeporteResource::collection(collect([$deporte]));
     }

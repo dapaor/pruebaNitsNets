@@ -1,0 +1,924 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API prueba previa junior PHP",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/deporte": {
+            "get": {
+                "tags": [
+                    "Deporte"
+                ],
+                "summary": "Mostrar deportes",
+                "operationId": "98e64d74f817c9f9391754494eaa1582",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los deportes.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Deporte"
+                ],
+                "summary": "Crear deporte",
+                "operationId": "b95b5bb6542820d3b2ab52b8749ac31f",
+                "requestBody": {
+                    "request": "DeporteStoreRequest",
+                    "description": "Contiene los datos del deporte a añadir",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "deporte": {
+                                    "name": "nombreDeporte",
+                                    "codigo": "NDEP"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Deporte creado de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/deporte/{id}": {
+            "get": {
+                "tags": [
+                    "Deporte"
+                ],
+                "summary": "Mostrar un deporte",
+                "operationId": "6bda5e7d609b88609325c73bd38a161a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del deporte a mostrar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar un deporte.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Deporte"
+                ],
+                "summary": "Modificar deporte",
+                "operationId": "e3bad1d3ae0535f97fb1ac475cad2740",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del deporte a modificar",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "request": "DeporteUpdateRequest",
+                    "description": "Contiene los datos del deporte a modificar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "deporte": {
+                                    "name": "nombreDeporte",
+                                    "codigo": "NDEP"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Deporte modificado de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Deporte"
+                ],
+                "summary": "Borrar un deporte",
+                "operationId": "95791568bafc3b2d3ac3f3f69af53fd2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del deporte a eliminar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deporte eliminado correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/pista": {
+            "get": {
+                "tags": [
+                    "Pista"
+                ],
+                "summary": "Mostrar pistas",
+                "operationId": "801b02bbaba220d35fb3bdd5c7059205",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las pistas.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Pista"
+                ],
+                "summary": "Crear pista",
+                "operationId": "233c41c45e76d4a0c303d080a7dc7111",
+                "requestBody": {
+                    "request": "PistaStoreRequest",
+                    "description": "Contiene los datos de la pista a añadir",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "pista": {
+                                    "ancho": 60,
+                                    "largo": 120,
+                                    "deporte": "balonmano"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pista creada de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/pista/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Mostrar una pista",
+                "operationId": "66f2bcaf98f0a22a7cdf499a9d7706cc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id de la pista a mostrar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar una pista.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Pista"
+                ],
+                "summary": "Modificar pista",
+                "operationId": "4af8fc4590069fb88626e708ba81e5d1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id de la pista a modificar",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "request": "PistaUpdateRequest",
+                    "description": "Contiene los datos de la pista a modificar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "pista": {
+                                    "ancho": 40,
+                                    "largo": 100,
+                                    "deporte": "baloncesto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pista modificada de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Pista"
+                ],
+                "summary": "Borrar una pista",
+                "operationId": "7806d9c75defed9fa492d7bdc02cd664",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id de la pista a eliminar",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "request": "PistaDeleteRequest",
+                    "description": "Contiene el código de la pista a elimianr",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "pista": {
+                                    "code": "BASK-11"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Pista eliminada correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reserva": {
+            "get": {
+                "tags": [
+                    "Reserva"
+                ],
+                "summary": "Mostrar reservas",
+                "operationId": "60d1d6e704085c8cf0f1dfe19db1d2dd",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todas las reservas.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Reserva"
+                ],
+                "summary": "Crear reserva",
+                "operationId": "692a3c1e8eda8a3487321a9173102557",
+                "requestBody": {
+                    "request": "ReservaStoreRequest",
+                    "description": "Contiene los datos de la reserva a añadir",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "reserva": {
+                                    "dia": "12/04/23",
+                                    "socio_id": 12,
+                                    "pista_id": "15",
+                                    "hora": 8
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Reserva creada de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reserva/{id}": {
+            "get": {
+                "tags": [
+                    "Reserva"
+                ],
+                "summary": "Mostrar una reserva",
+                "operationId": "7035e5296cf4458d93fcee0d722983fe",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id de la reserva a mostrar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar una reserva.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Reserva"
+                ],
+                "summary": "Modificar reserva",
+                "operationId": "a9ae29685039c06b26776e5b9df5717e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id de la reserva a modificar",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "request": "ReservaUpdateRequest",
+                    "description": "Contiene los datos de la reserva a modificar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "reserva": {
+                                    "dia": "24/04/23",
+                                    "socio_id": 12,
+                                    "pista_id": 15,
+                                    "hora": 10
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Reserva modificada de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Reserva"
+                ],
+                "summary": "Borrar una reserva",
+                "operationId": "c40c98291a795f217f3c6aec25e9290f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id de la reserva a eliminar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reserva eliminada correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/socio": {
+            "get": {
+                "tags": [
+                    "Socio"
+                ],
+                "summary": "Mostrar socios",
+                "operationId": "cea57f265aec9477376b4ec903fa5d52",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los socios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Socio"
+                ],
+                "summary": "Crear socio",
+                "operationId": "2c03b4a6a4709d6107bf8c6829cacd37",
+                "requestBody": {
+                    "request": "SocioStoreRequest",
+                    "description": "Contiene los datos del socio a añadir",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "socio": {
+                                    "nombre": "Prueba",
+                                    "apellidos": "Socios",
+                                    "dni": "12343212E",
+                                    "email": "example@example.com",
+                                    "contrasena": "12341234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Socio creado de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/socio/{id}": {
+            "get": {
+                "tags": [
+                    "Socio"
+                ],
+                "summary": "Mostrar un socio",
+                "operationId": "a3a4ecd0db35abc43679663bb1345770",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del socio a mostrar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar un socio.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Socio"
+                ],
+                "summary": "Modificar socio",
+                "operationId": "8b52016b547052f39a67320f88f8c67b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del socio a modificar",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "request": "SocioUpdateRequest",
+                    "description": "Contiene los datos del socio a modificar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "socio": {
+                                    "nombre": "PruebaPut",
+                                    "conntrasena": "12341234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Socio modificado de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Socio"
+                ],
+                "summary": "Borrar un socio",
+                "operationId": "eed823c79231149746b11a64354eaa14",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del socio a eliminar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Socio eliminado correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Mostrar usuarios",
+                "operationId": "971db9bc974c0e607288cfe7ecc10096",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los usuarios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Crear usuario",
+                "operationId": "089999749fbdec98922de2f74ba8d540",
+                "requestBody": {
+                    "request": "UserStoreRequest",
+                    "description": "Contiene los datos del usuario a añadir",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "user": {
+                                    "email": "test@gmail.com",
+                                    "password": "12341234",
+                                    "name": "prueba"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuario creado de manera exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Mostrar un usuario",
+                "operationId": "d8f696420bea235f4916124c9ba1c507",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del usuario a mostrar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar un usuarios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Borrar un usuario",
+                "operationId": "f8d7aea516ee464d0afee90f3a1a1722",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del usuario a eliminar",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los usuarios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "summary": "Login",
+                "operationId": "0fc9610184083ac6dddab2c63139225a",
+                "requestBody": {
+                    "request": "LoginRequest",
+                    "description": "Contiene el email y la contraseña a loggear",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "user": {
+                                    "email": "test@gmail.com",
+                                    "password": "12341234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login exitoso",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "get": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "summary": "Cerrar sesión",
+                "operationId": "8992dd4fbd21ecd6bd79f84228dc98cf",
+                "responses": {
+                    "200": {
+                        "description": "Cerrar sesión",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "name": "bearerAuth",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
