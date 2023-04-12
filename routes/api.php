@@ -3,6 +3,7 @@
 use App\Http\Controllers\PistaController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\SocioController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeporteController;
@@ -16,17 +17,14 @@ use App\Http\Controllers\DeporteController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'store']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::resource('/user', UserController::class);
+    Route::resource('/deporte', DeporteController::class);
+    Route::resource('/pista', PistaController::class);
+    Route::resource('/socio', SocioController::class);
+    Route::resource('/rese rva', ReservaController::class);
+    Route::get('logout', [UserController::class,'logout']);
 });
-
-Route::resource('/deporte', DeporteController::class);
-
-Route::resource('/pista', PistaController::class);
-
-Route::resource('/socio', SocioController::class);
-
-Route::resource('/reserva', ReservaController::class);
-
-Route::post('/reserva/{pista}', [ReservaController::class,'getReservasPistaDiaHora']);
