@@ -40,4 +40,15 @@ class UserService
 
         return ['user' => UserResource::collection(collect([$user])), 'token' => $token];
     }
+
+    public static function update($data, $user_id)
+    {
+        $user = User::find($user_id);
+        foreach($data as $attribute => $value){
+            $user->$attribute = $value;
+        }
+        $user->password = Hash::make($user->password);
+        $user->save();
+        return UserResource::collection(collect([$user]));
+    }
 }

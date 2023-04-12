@@ -656,7 +656,7 @@
                             "example": {
                                 "socio": {
                                     "nombre": "PruebaPut",
-                                    "conntrasena": "12341234"
+                                    "contrasena": "12341234"
                                 }
                             }
                         }
@@ -798,6 +798,53 @@
                 "responses": {
                     "200": {
                         "description": "Mostrar un usuarios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Modificar user",
+                "operationId": "5e09c26a0abb2b1bf040badb2d9c69ba",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "el id del user a modificar",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "request": "UserUpdateRequest",
+                    "description": "Contiene los datos del user a modificar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "user": {
+                                    "name": "PruebaPut",
+                                    "email": "test@example.com",
+                                    "password": "123412"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User modificado de manera exitosa",
                         "content": {
                             "application/json": {
                                 "schema": {}

@@ -127,11 +127,66 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/user/{id}",
+     *     summary="Modificar user",
+     *     security={{"bearerAuth":{}}},
+     *     tags={"User"},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="User modificado de manera exitosa"
+     *     ),
+     *     @OA\Parameter (
+     *         name="id",
+     *         in="path",
+     *         description="el id del user a modificar",
+     *         required=true
+     *     ),
+     *     @OA\RequestBody(
+     *     request="UserUpdateRequest",
+     *     description="Contiene los datos del user a modificar",
+     *     required=true,
+     *     @OA\JsonContent(
+     *          @OA\Schema (
+     *              @OA\Property (
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="name",
+     *                      type="string"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="email",
+     *                      type="string"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="password",
+     *                      type="string"
+     *                  ),
+     *              ),
+     *          ),
+     *          example={
+     *                  "user":{
+     *                          "name":"PruebaPut",
+     *                          "email":"test@example.com",
+     *                          "password":"12341234"
+     *                  }
+     *              }
+     *      )
+     *      ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     *
+     * )
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $data = array();
+        foreach($request['user'] as $key => $value){
+            $data[$key] = $value;
+        }
+        return UserService::update($data, $user->id);
     }
 
     /**
