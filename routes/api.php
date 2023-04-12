@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PistaController;
+use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\SocioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,7 @@ Route::resource('/deporte', DeporteController::class);
 Route::resource('/pista', PistaController::class);
 
 Route::resource('/socio', SocioController::class);
+
+Route::resource('/reserva', ReservaController::class);
+
+Route::post('/reserva/{pista}', [ReservaController::class,'getReservasPistaDiaHora']);

@@ -19,6 +19,7 @@ return [
     'reservas' => [
         'N_RESERVAS_SEEDER' => 20,
         'MAX_HORA_RESERVA' => 22,
-        'MIN_HORA_RESERVA' => 8
+        'MIN_HORA_RESERVA' => 8,
+        'MAX_RESERVAS_DIA' => 3,
     ]
 ];
