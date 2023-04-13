@@ -16,9 +16,12 @@ class DeporteFactory extends Factory
      */
     public function definition(): array
     {
+        $name = fake()->word();
+        $codigo = strtoupper(substr($name,0,3));
         return [
             //
-            'name' => fake()->word()
+            'name' => $name,
+            'codigo' => $codigo
         ];
     }
 }

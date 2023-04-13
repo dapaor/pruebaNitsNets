@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,7 @@ class ReservaFactory extends Factory
             //
             'socio_id' => mt_rand(1, config('databaseConsts.socios.N_SOCIOS_SEEDER')),
             'pista_id' => mt_rand(1, config('databaseConsts.pistas.N_PISTAS_SEEDER')),
-            'dia' => fake()->date('d-m-Y', now()),
+            'dia' => new DateTime('today'),
             'hora' => mt_rand(config('databaseConsts.reservas.MIN_HORA_RESERVA'),
                               config('databaseConsts.reservas.MAX_HORA_RESERVA'))
         ];

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(config('databaseConsts.users.N_USERS_SEEDER'))->create();
         Socio::factory(config('databaseConsts.socios.N_SOCIOS_SEEDER'))->create();
-        Deporte::factory(config('databaseConsts.deporte.N_DEPORTES_SEEDER'))->create();
+        Deporte::factory(config('databaseConsts.deportes.N_DEPORTES_SEEDER'))->create();
         Pista::factory(config('databaseConsts.pistas.N_PISTAS_SEEDER'))->create();
         Reserva::factory(config('databaseConsts.reservas.N_RESERVAS_SEEDER'))->create();
     }
