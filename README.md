@@ -25,3 +25,7 @@ Acto seguido se ha de acceder al panel de rutas etiquetado como "Autenticación"
 Copiamos esta vez el accessToken que devuelve ese endpoint y lo pegamos en la opción de autorización de la API, arriba del todo donde pone "Authorize" y aparece un candado.
 
 Una vez loggeado ya se pueden usar todas las rutas de la api.
+
+## Esquema de base de datos:
+
+<img width="641" alt="image" src="https://user-images.githubusercontent.com/26760932/231732743-90c26c87-9417-4a00-9f0a-8b2bc926fdb7.png">
