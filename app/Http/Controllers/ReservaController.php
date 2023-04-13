@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ListDiaReservaRequest;
 use App\Http\Requests\Reserva\StoreReservaRequest;
 use App\Http\Requests\Reserva\UpdateReservaRequest;
 use App\Http\Resources\ReservaResource;
@@ -91,7 +92,7 @@ class ReservaController extends Controller
         $reserva = new Reserva();
         $reserva->pista_id = $request['reserva.pista_id'];
         $reserva->socio_id = $request['reserva.socio_id'];
-        $reserva->dia = $request['reserva.dia'];
+        $reserva->dia = \DateTime::createFromFormat('d/m/y H:i:s', $request['reserva.dia'] . ' 00:00:00')->format('Y-m-d H:i:s');
         $reserva->hora = $request['reserva.hora'];
         return ReservaService::store($reserva);
     }
@@ -185,7 +186,7 @@ class ReservaController extends Controller
     public function update(UpdateReservaRequest $request, Reserva $reserva)
     {
         $data = [
-            'dia' => Carbon::createFromFormat('d/m/y h:i:s', $request['reserva.dia'] . ' 00:00:00'),
+            'dia' => \DateTime::createFromFormat('d/m/y H:i:s', $request['reserva.dia'] . ' 00:00:00')->format('Y-m-d H:i:s'),
             'hora' => $request['reserva.hora'],
             'pista_id' => $request['reserva.pista_id'],
             'socio_id' => $request['reserva.socio_id']
@@ -219,5 +220,45 @@ class ReservaController extends Controller
     public function destroy(Reserva $reserva)
     {
         return ReservaService::delete($reserva->id);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/reserva/dia",
+     *     summary="Listado de reservas por día",
+     *     security={{"bearerAuth":{}}},
+     *     tags={"Reserva"},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Listado de reservas"
+     *     ),
+     *     @OA\RequestBody(
+     *     description="Contiene el día a buscar",
+     *     required=true,
+     *     @OA\JsonContent(
+     *          @OA\Schema (
+     *              @OA\Property (
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="dia",
+     *                      type="date"
+     *                  )
+     *              ),
+     *          ),
+     *          example={
+     *                  "dia": "12/04/23"
+     *              }
+     *      )
+     *      ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
+     */
+    public function listDia(Request $request)
+    {
+        $dia = \DateTime::createFromFormat('d/m/y H:i:s', $request['dia'] . ' 00:00:00')->format('Y-m-d H:i:s');
+        return ReservaService::listDia($dia);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Reserva;
+namespace App\Http\Requests\Pista;
 
 use App\Models\Reserva;
 use DateTime;
@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Factory as ValidationFactory;
 
-class UpdateReservaRequest extends FormRequest
+class PistasLibresRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -41,26 +41,6 @@ class UpdateReservaRequest extends FormRequest
         );
 
         $validationFactory->extend(
-            'reservaMismaHora',
-            function($parameter_name, $value, $parameters){
-                foreach($parameters as $param){
-                    if(empty($param)){
-                        return false;
-                    }
-                }
-                $dia = \DateTime::createFromFormat('d/m/y H:i:s', $parameters[0] . ' 00:00:00')->format('Y-m-d H:i:s');
-                return count(DB::query()
-                        ->select('r.dia')
-                        ->from('reservas as r')
-                        ->where('r.pista_id', '=', $value)
-                        ->where('r.dia', '=', $dia)
-                        ->where('r.hora', '=', $parameters[1])
-                        ->get()) < 1;
-            },
-            'La pista no está disponible el día escogido a la hora escogida'
-        );
-
-        $validationFactory->extend(
             'afterYesterday',
             function ($parameter_name, $value){
                 $ayer = new DateTime('today');
@@ -78,35 +58,30 @@ class UpdateReservaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'reserva.dia' => 'required|afterYesterday',
-            'reserva.hora' => 'required|numeric|max:' . config('databaseConsts.reservas.MAX_HORA_RESERVA'). '|min:' . config('databaseConsts.reservas.MIN_HORA_RESERVA'),
-            'reserva.socio_id' => 'required|exists:socios,id|max3reservas:' . $this['reserva.dia'],
-            'reserva.pista_id' => 'required|reservaMismaHora:'. $this['reserva.dia'].','.$this['reserva.hora']
+            'search.dia' => 'required|afterYesterday',
+            'search.socio_id' => 'required|exists:socios,id|max3reservas:' . $this['search.dia'],
+            'search.deporte_id' => 'required|exists:deportes,id'
         ];
     }
-
     public function attributes(): array
     {
         return [
-            'reserva.pista_id' => 'identificador de la pista',
-            'reserva.socio_id' => 'identificador del socio',
-            'reserva.dia' => 'día de la reserva',
-            'reserva.hora' => 'hora de la reserva'
+            'search.dia' => 'día a buscar',
+            'search.socio_id' => 'identificador del socio',
+            'search.deporte_id' => 'identificador deporte a buscar',
         ];
     }
+
     public function messages(): array
     {
         return [
-            'reserva.pista_id.required' => 'el :attribute es obligatorio',
+            'search.dia.required' => 'el :attribute es necesario para la búsqueda',
 
-            'reserva.socio_id.required' => 'el :attribute es obligatorio',
-            'reserva.socio_id.exists' => 'el :attribute debe existir en la base de datos',
+            'search.socio_id.required' => 'el :attribute es obligatorio',
+            'search.socio_id.exists' => 'el :attribute debe existir en la base de datos',
 
-            'reserva.dia.required' => 'el :attribute es necesario para realizar la reserva',
-
-            'reserva.hora.max' => 'La :attribute no puede exceder de las ' . config('databaseConsts.reservas.MAX_HORA_RESERVA'),
-            'reserva.hora.min' => 'La :attribute no puede ser anterior a las ' .config('databaseConsts.reservas.MIN_HORA_RESERVA'),
-            'reserva.hora.required' => 'La :attribute es necesaria para realizar la reserva'
+            'search.deporte_id.required' => 'el :attribute es obligatorio',
+            'search.deporte_id.exists' => 'el :attribute debe existir en la base de datos'
         ];
     }
 

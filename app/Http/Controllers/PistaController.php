@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Pista\DeletePistaRequest;
+use App\Http\Requests\Pista\PistasLibresRequest;
 use App\Http\Requests\Pista\StorePistaRequest;
 use App\Http\Requests\Pista\UpdatePistaRequest;
 use App\Http\Services\PistaService;
@@ -222,5 +223,58 @@ class PistaController extends Controller
     public function destroy(DeletePistaRequest $request)
     {
         return PistaService::delete($request['pista.code']);
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/api/pista/search",
+     *     summary="Buscar pistas disponibles",
+     *     security={{"bearerAuth":{}}},
+     *     tags={"Pista"},
+     *     @OA\Response(
+     *         @OA\JsonContent(),
+     *         response=200,
+     *         description="Listado de pistas disponibles"
+     *     ),
+     *     @OA\RequestBody(
+     *     request="PistasLibresRequest",
+     *     description="Contiene los datos de las pistas a buscar",
+     *     required=true,
+     *     @OA\JsonContent(
+     *          @OA\Schema (
+     *              @OA\Property (
+     *                  type="object",
+     *                  @OA\Property (
+     *                      property="dia",
+     *                      type="date"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="deporte_id",
+     *                      type="int"
+     *                  ),
+     *                  @OA\Property (
+     *                      property="socio_id",
+     *                      type="int"
+     *                  ),
+     *              ),
+     *          ),
+     *          example={
+     *                  "search":{
+     *                          "dia":"16/04/23",
+     *                          "deporte_id":2,
+     *                          "socio_id":8
+     *                  }
+     *              }
+     *      )
+     *      ),
+     *     @OA\MediaType(
+     *     mediaType="application/json"
+     *     ),
+     * )
+     */
+    public function search(PistasLibresRequest $request)
+    {
+        $data = ['dia' => $request['search.dia'], 'deporte_id' => $request['search.deporte_id']];
+        return PistaService::search($data);
     }
 }

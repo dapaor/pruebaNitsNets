@@ -13,7 +13,14 @@ class Reserva extends Model
     protected $table = 'reservas';
 
     protected $casts = [
-      'dia' => 'date:d-m-Y'
+      'dia' => 'date:d-m-y'
     ];
-
+    public function socio()
+    {
+        return $this->belongsTo(Socio::class);
+    }
+    public function pista()
+    {
+        return $this->belongsTo(Pista::class);
+    }
 }

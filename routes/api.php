@@ -19,12 +19,18 @@ use App\Http\Controllers\DeporteController;
 */
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'store']);
+Route::post('/pista/search', [PistaController::class,'search']);
 
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::resource('/user', UserController::class);
     Route::resource('/deporte', DeporteController::class);
+
     Route::resource('/pista', PistaController::class);
+
     Route::resource('/socio', SocioController::class);
+
     Route::resource('/reserva', ReservaController::class);
+    Route::post('/reserva/dia', [ReservaController::class, 'listDia']);
+
     Route::get('logout', [UserController::class,'logout']);
 });

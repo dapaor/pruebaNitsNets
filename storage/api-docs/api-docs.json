@@ -362,6 +362,47 @@
                 ]
             }
         },
+        "/api/pista/search": {
+            "post": {
+                "tags": [
+                    "Pista"
+                ],
+                "summary": "Buscar pistas disponibles",
+                "operationId": "b3295e6078dadc5774e82dedcec969d4",
+                "requestBody": {
+                    "request": "PistasLibresRequest",
+                    "description": "Contiene los datos de las pistas a buscar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "search": {
+                                    "dia": "16/04/23",
+                                    "deporte_id": 2,
+                                    "socio_id": 8
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Listado de pistas disponibles",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/reserva": {
             "get": {
                 "tags": [
@@ -522,6 +563,42 @@
                 "responses": {
                     "200": {
                         "description": "Reserva eliminada correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/reserva/dia": {
+            "post": {
+                "tags": [
+                    "Reserva"
+                ],
+                "summary": "Listado de reservas por día",
+                "operationId": "adb803af4c3c901967d279037178761e",
+                "requestBody": {
+                    "description": "Contiene el día a buscar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "dia": "12/04/23"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Listado de reservas",
                         "content": {
                             "application/json": {
                                 "schema": {}
@@ -836,7 +913,7 @@
                                 "user": {
                                     "name": "PruebaPut",
                                     "email": "test@example.com",
-                                    "password": "123412"
+                                    "password": "12341234"
                                 }
                             }
                         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Http\Resources\ReservaDiaResource;
 use App\Http\Resources\ReservaResource;
 use App\Models\Reserva;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -35,5 +36,11 @@ class ReservaService
         $reserva = Reserva::find($id);
         $reserva->delete();
         return ReservaResource::collection(collect([$reserva]));
+    }
+
+    public static function listDia($dia)
+    {
+        $reservas = Reserva::where('dia', $dia)->get();
+        return ReservaDiaResource::collection(collect($reservas));
     }
 }
